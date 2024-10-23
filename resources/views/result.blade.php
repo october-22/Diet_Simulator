@@ -36,7 +36,7 @@
 
             <h2>期限経過時の体重</h2>
             <p>{{ $duration }}日経過した時点の予測される体重</p>
-            <div class="result">
+            <div class="result" @if ($weightAfterDuration > $goalWeight) style="color: #CC0000;" @endif>
                 {{ $goalWeight }} > {{ $weightAfterDuration }} kg
             </div>
 
