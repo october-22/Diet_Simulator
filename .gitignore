@@ -6,7 +6,4 @@
 .env.production
 /.idea
 /.vscode
-mykey.key
 .phpunit.result.cache
-mycsr.csr
-mycert.crt

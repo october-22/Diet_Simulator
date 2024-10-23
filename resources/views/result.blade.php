@@ -30,7 +30,7 @@
 
             <h2>一日の減量値</h2>
             <p>一日の消費 - 一日の摂取 = 減量値</p>
-            <div class="result" @if ($dailyCalorieDeficit < 0) style="color: red;" @endif>
+            <div class="result" @if ($dailyCalorieDeficit < 0) style="color: #CC0000;" @endif>
                 {{ $dailyCalorieDeficit }} kcal
             </div>
 
@@ -40,7 +40,7 @@
 
             <h2>目標達成の必要日数</h2>
             <p>{{ $goalWeight }}kgに到達するまでにかかる日数。90日以上かかる場合は未達成となる。</p>
-            <div class="result" @if ($daysNeeded < 0) style="color: red;" @endif>
+            <div class="result" @if ($daysNeeded < 0) style="color: #CC0000;" @endif>
                 @if ($daysNeeded == -1)
                     未達成
                 @else
