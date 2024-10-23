@@ -36,10 +36,12 @@
 
             <h2>期限経過時の体重</h2>
             <p>{{ $duration }}日経過した時点の予測される体重</p>
-            <div class="result">{{ $weightAfterDuration }} kg</div>
+            <div class="result">
+                {{ $goalWeight }} > {{ $weightAfterDuration }} kg
+            </div>
 
             <h2>目標達成の必要日数</h2>
-            <p>{{ $goalWeight }}kgに到達するまでにかかる日数。90日以上かかる場合は未達成となる。</p>
+            <p>目標に到達するまでにかかる日数。90日以上かかる場合は未達成となる。</p>
             <div class="result" @if ($daysNeeded < 0) style="color: #CC0000;" @endif>
                 @if ($daysNeeded == -1)
                     未達成
