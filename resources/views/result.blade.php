@@ -40,7 +40,7 @@
 
             <h2>目標達成の必要日数</h2>
             <p>{{ $goalWeight }}kgに到達するまでにかかる日数。90日以上かかる場合は未達成となる。</p>
-            <div class="result" @if ($daysNeeded < 0) style="color: red;" @endif></div>
+            <div class="result" @if ($daysNeeded < 0) style="color: red;" @endif>
                 @if ($daysNeeded == -1)
                     未達成
                 @else
