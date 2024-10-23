@@ -125,11 +125,14 @@
                             複数の種目を設定できます。<br><br>
                         </p>
                         <select id="activitySelect" name="activity" class="form-select">
-                            <option value="walking" {{ old('activity') == 'walking' ? 'selected' : '' }}>徒歩</option>
-                            <option value="running" {{ old('activity') == 'running' ? 'selected' : '' }}>走る</option>
-                            <option value="cycling" {{ old('activity') == 'cycling' ? 'selected' : '' }}>自転車</option>
-                            <option value="training-light" {{ old('activity') == 'training-light' ? 'selected' : '' }}>軽い筋トレ</option>
-                            <option value="training" {{ old('activity') == 'training' ? 'selected' : '' }}>中程度の筋トレ</option>
+                            <option value="デスクワーク" {{ old('activity') == 'デスクワーク' ? 'selected' : '' }}>デスクワーク</option>
+                            <option value="軽作業" {{ old('activity') == '軽作業' ? 'selected' : '' }}>軽作業</option>
+                            <option value="肉体労働" {{ old('activity') == '肉体労働' ? 'selected' : '' }}>肉体労働</option>
+                            <option value="徒歩" {{ old('activity') == '徒歩' ? 'selected' : '' }}>徒歩</option>
+                            <option value="走る" {{ old('activity') == '走る' ? 'selected' : '' }}>走る</option>
+                            <option value="自転車" {{ old('activity') == '自転車' ? 'selected' : '' }}>自転車</option>
+                            <option value="軽い筋トレ" {{ old('activity') == '軽い筋トレ' ? 'selected' : '' }}>軽い筋トレ</option>
+                            <option value="筋トレ" {{ old('activity') == '筋トレ' ? 'selected' : '' }}>中程度の筋トレ</option>
                         </select>
                     </div>
                     <div class="mb-4">

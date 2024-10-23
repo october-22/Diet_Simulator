@@ -26,7 +26,10 @@
 
             <h2>一日の消費カロリー</h2>
             <p>基礎代謝 + 活動代謝 = 一日の総カロリー消費</p>
-            <div class="result">{{ $dailyMetabolism }} kcal</div>
+            
+            <div class="result" @if ($dailyMetabolism < 0) style="color: red;" @endif>
+                {{ $dailyMetabolism }} kcal
+            </div>
 
             <h2>一日の減量値</h2>
             <p>一日の消費 - 一日の摂取 = 減量値</p>

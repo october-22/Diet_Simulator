@@ -160,19 +160,29 @@ class DietController extends Controller
             $duration = $activity['duration']; 
     
             switch ($activityType) {
-                case 'walking':
+                
+                case 'デスクワーク':
+                    $mets = 1.5;
+                    break;
+                case '軽作業':
+                    $mets = 2.5;
+                    break;
+                case '肉体労働':
+                    $mets = 7.0;
+                    break;
+                case '徒歩':
                     $mets = 3.3;
                     break;
-                case 'running':
+                case '走る':
                     $mets = 9.8;
                     break;
-                case 'cycling':
+                case '自転車':
                     $mets = 7.5;
                     break;
-                case 'training-light':
+                case '軽い筋トレ':
                     $mets = 3.0;
                     break;
-                case 'training':
+                case '筋トレ':
                     $mets = 6.0;
                     break;
                 default:
