@@ -6,3 +6,5 @@
 .env.production
 /.idea
 /.vscode
+private.key
+.phpunit.result.cache
