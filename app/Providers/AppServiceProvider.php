@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Routing\UrlGenerator; //対策：送信しようとしている情報は保護されません。
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,8 +18,8 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot(UrlGenerator $url): void //  引数追加
     {
-        //
+        $url->forceScheme('https'); //  追加
     }
 }
