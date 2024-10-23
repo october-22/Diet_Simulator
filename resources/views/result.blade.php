@@ -26,14 +26,13 @@
 
             <h2>一日の消費カロリー</h2>
             <p>基礎代謝 + 活動代謝 = 一日の総カロリー消費</p>
-            
-            <div class="result" @if ($dailyMetabolism < 0) style="color: red;" @endif>
-                {{ $dailyMetabolism }} kcal
-            </div>
+            <div class="result">{{ $dailyMetabolism }} kcal</div>
 
             <h2>一日の減量値</h2>
             <p>一日の消費 - 一日の摂取 = 減量値</p>
-            <div class="result">{{ $dailyCalorieDeficit }} kcal</div>
+            <div class="result" @if ($dailyCalorieDeficit < 0) style="color: red;" @endif>
+                {{ $dailyCalorieDeficit }} kcal
+            </div>
 
             <h2>期限経過時の体重</h2>
             <p>{{ $duration }}日経過した時点の予測される体重</p>
@@ -41,7 +40,7 @@
 
             <h2>目標達成の必要日数</h2>
             <p>{{ $goalWeight }}kgに到達するまでにかかる日数。90日以上かかる場合は未達成となる。</p>
-            <div class="result">
+            <div class="result" @if ($daysNeeded < 0) style="color: red;" @endif></div>
                 @if ($daysNeeded == -1)
                     未達成
                 @else

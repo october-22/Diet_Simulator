@@ -117,7 +117,7 @@
 
                 <div class="activity">
                     <div class="mb-4">
-                        <label for="activitySelect" class="form-label">運動種目:</label>
+                        <label for="activitySelect" class="form-label">活動種目:</label>
                         <p>
                             一日の活動量の目安。<br><br>
                             通勤で徒歩往復20分なら「徒歩」「20」と入力し、追加ボタンをクリック。最小10分。<br><br>
@@ -137,7 +137,7 @@
                     </div>
                     <div class="mb-4">
                         <label for="activityDuration" class="form-label">時間 (分):</label>
-                        <input type="number" name="activityDuration" id="activityDuration" class="form-control" min="10" max="720" value="{{ old('activityDuration') }}">
+                        <input type="number" name="activityDuration" id="activityDuration" class="form-control" min="10" max="1440" value="{{ old('activityDuration') }}">
                     </div>
                     <div class="mb-4 text-end">
                         <button type="button" class="btn btn-custom rounded" onclick="removeActivity()">クリア</button>
