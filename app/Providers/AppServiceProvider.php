@@ -17,9 +17,13 @@ class AppServiceProvider extends ServiceProvider
 
     /**
      * Bootstrap any application services.
+     * ローカル環境ではない場合にのみHTTPSを強制
      */
-    public function boot(UrlGenerator $url): void //  引数追加
+    public function boot(UrlGenerator $url): void
     {
-        $url->forceScheme('https'); //  追加
+        if (config('app.env') !== 'local') {
+            $url->forceScheme('https');
+        }
     }
+    
 }
