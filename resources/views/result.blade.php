@@ -49,7 +49,7 @@
                     {{ $daysNeeded }} 日
                 @endif
             </div>
-
+            
             <div class="linkbutton">
                 <a href="{{ route('diet.back') }}">戻る</a>
             </div>
