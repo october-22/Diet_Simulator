@@ -110,14 +110,15 @@ class DietController extends Controller
         ]);       
 
         return view('result', [
-            'dailyCalorieIntake' => $dailyCalorieIntake,
-            'goalWeight' => $goalWeight,
-            'duration' => $duration,
+            'dailyCalorieIntake' => floor($dailyCalorieIntake),
+            'nowWeight' => floor($nowWeight * 10) / 10,
+            'goalWeight' => floor($goalWeight * 10) / 10,
+            'duration' => floor($duration),
             'bmr' => floor($bmr),
             'activeMetabolism' => floor($activeMetabolism),
             'dailyMetabolism' => floor($dailyMetabolism),
             'dailyCalorieDeficit' => floor($dailyCalorieDeficit * 10) / 10, 
-            'weightAfterDuration' => floor($weightAfterDuration),
+            'weightAfterDuration' => floor($weightAfterDuration * 10) / 10, 
             'daysNeeded' => floor($daysNeeded),
         ]);  
     }
