@@ -10,6 +10,11 @@ class DietControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+
+    /**
+     * 基礎代謝(BMR)を算出する。(男性)
+     * @return void
+     */
     public function test_calculateBMR_male()
     {
         $age = 25;
@@ -24,6 +29,11 @@ class DietControllerTest extends TestCase
         $this->assertEquals($expectedBMR, $calculatedBMR, '');
     }
 
+
+    /**
+     * 基礎代謝(BMR)を算出する。(女性)
+     * @return void
+     */
     public function test_calculateBMR_female()
     {
         $age = 30;
@@ -38,16 +48,19 @@ class DietControllerTest extends TestCase
         $this->assertEquals($expectedBMR, $calculatedBMR, '');
     }
 
+
+    /**
+     * 様々な活動による活動代謝の計算
+     * @return void
+     */
     public function test_calculateActiveMetabolism_with_various_activities()
     {
-        // テストケース: 様々な活動による活動代謝の計算
         $controller = new DietController();
 
-        // テストデータ
         $activities = [
-            ['type' => 'walking', 'duration' => 60], // 1時間
-            ['type' => 'running', 'duration' => 30],  // 30分
-            ['type' => 'cycling', 'duration' => 45],  // 45分
+            ['type' => '徒歩', 'duration' => 60], // 1時間
+            ['type' => '走る', 'duration' => 30],  // 30分
+            ['type' => '自転車', 'duration' => 45],  // 45分
         ];
         $weight = 70; // 体重 (kg)
 
@@ -59,9 +72,13 @@ class DietControllerTest extends TestCase
         $this->assertEquals($expectedCaloriesBurned, $calculatedCalories, '');
     }
 
+
+    /**
+     * 活動がない場合(基礎代謝のみで計算)
+     * @return void
+     */
     public function test_calculateActiveMetabolism_with_no_activities()
     {
-        // テストケース: 活動がない場合
         $controller = new DietController();
         $activities = [];
         $weight = 70; // 体重 (kg)
@@ -74,12 +91,16 @@ class DietControllerTest extends TestCase
         $this->assertEquals($expectedCaloriesBurned, $calculatedCalories);
     }
 
+
+    /**
+     * 不明な活動の処理
+     * @return void
+     */
     public function test_calculateActiveMetabolism_with_unknown_activity()
     {
-        // テストケース: 不明な活動の処理
         $controller = new DietController();
         $activities = [
-            ['type' => 'unknown_activity', 'duration' => 30], // 不明な活動
+            ['type' => 'ヨガ', 'duration' => 30],
         ];
         $weight = 70; // 体重 (kg)
 
@@ -91,9 +112,13 @@ class DietControllerTest extends TestCase
         $this->assertEquals($expectedCaloriesBurned, $calculatedCalories);
     }
 
+
+    /**
+     * 正しいCSV形式のデータ
+     * @return void
+     */
     public function test_parseActivities()
     {
-    // テストケース: 正しいCSV形式のデータ
     $activitiesInput = "walking,30;running,20;cycling,15";
     
     $controller = new DietController();
@@ -108,9 +133,13 @@ class DietControllerTest extends TestCase
     $this->assertEquals($expectedOutput, $result);
     }
 
+
+    /**
+     * 空の入力データ
+     * @return void
+     */
     public function test_parseActivities_with_empty_input()
     {
-    // テストケース: 空の入力データ
     $activitiesInput = "";
     
     $controller = new DietController();
@@ -121,9 +150,13 @@ class DietControllerTest extends TestCase
     $this->assertEquals($expectedOutput, $result);
     }
 
+
+    /**
+     * 無効なCSV形式のデータ
+     * @return void
+     */
     public function test_parseActivities_with_invalid_format()
     {
-    // テストケース: 無効なCSV形式のデータ
     $activitiesInput = "walking;running,20;cycling,15"; // フォーマットが不正
     
     $controller = new DietController();
@@ -133,6 +166,11 @@ class DietControllerTest extends TestCase
     $this->assertEquals($expectedResult, $result);
     }
 
+
+    /**
+     * 目標達成予測日数の各テストケース
+     * @return void
+     */
     public function test_CalculateDaysNeeded()
     {
         $controller = new DietController();
@@ -172,6 +210,11 @@ class DietControllerTest extends TestCase
         $this->assertEquals($expectedDays, $calculatedDays);
     }
 
+
+    /**
+     * 目標期限到達時の体重計算
+     * @return void
+     */
     public function test_CalculateWeightAfterDuration()
     {
         $controller = new DietController();
@@ -216,6 +259,11 @@ class DietControllerTest extends TestCase
         $this->assertEquals($expectedWeightAfterDuration, $calculatedWeight);
     }
 
+
+    /**
+     * 有効なデータで全体のシミュレートテスト
+     * @return void
+     */
     public function test_calculate_with_valid_data()
     {
         $response = $this->post('/calculate', [
@@ -226,7 +274,7 @@ class DietControllerTest extends TestCase
             'goalWeight' => 70.0,
             'duration' => 60,
             'dailyCalorieIntake' => 2500,
-            'activities' => 'running,30;walking,60'
+            'activities' => '走る,30;徒歩,60'
         ]);
 
         // ステータスコードが200であることを確認
@@ -237,6 +285,7 @@ class DietControllerTest extends TestCase
             'bmr', 'activeMetabolism', 'dailyMetabolism', 'weightAfterDuration', 'daysNeeded'
         ]);
     }
+
 
     /**
      * 不正なデータによるバリデーションエラーテスト

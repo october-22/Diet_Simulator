@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Routing\UrlGenerator; //対策：送信しようとしている情報は保護されません。
+use Illuminate\Routing\UrlGenerator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,6 +18,7 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      * ローカル環境ではない場合にのみHTTPSを強制
+     * Mixed Content Error 対策　
      */
     public function boot(UrlGenerator $url): void
     {
