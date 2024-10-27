@@ -29,6 +29,11 @@ class DietController extends Controller
          )); 
     }
 
+    
+    /**
+     * resultページからトップページに戻る場合、ユーザー入力値を保持する。
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function back()
     {
         $age = session('age');
@@ -49,12 +54,14 @@ class DietController extends Controller
             'duration',
             'dailyCalorieIntake'
          ));
-
-         //return redirect()->route('diet.index')->withInput();
-
     }
 
 
+    /**
+     * ユーザー入力値から各データを算出する。
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function calculate(Request $request)
     {  
         $validatedData = $request->validate([
@@ -122,6 +129,7 @@ class DietController extends Controller
             'daysNeeded' => floor($daysNeeded),
         ]);  
     }
+
 
     /**
      * 基礎代謝(BMR)を計算
@@ -210,11 +218,9 @@ class DietController extends Controller
         $activitiesData = explode(';', $activitiesInput);
         $activities = [];
 
-        /**
-         * $activityが空ならスキップ。
-         * カンマ分割でtype, durationに分割できない場合[]を返す。
-         * typeが文字列、duration が数値で無い場合は[]を返す。
-         */
+        // $activityが空ならスキップ。
+        // カンマ分割でtype, durationに分割できない場合[]を返す。
+        // typeが文字列、duration が数値で無い場合は[]を返す。
 
         foreach ($activitiesData as $activity) {
 
@@ -288,6 +294,7 @@ class DietController extends Controller
 
         return $weightAfterDuration;
     }
+
 
     /**
      * 一日で蓄積されるカロリー取得、プラス値、もしくはマイナス値
